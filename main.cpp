@@ -80,23 +80,19 @@ void agent::evaluate()
 
     for (int i = 0; i < points; i++)
     {
-        for  (unsigned int j =0; j < i; j++)
+        for(unsigned int m = 0; m < agents.size(); m++)
         {
-
-            for(unsigned int m = 0; m < agents.size(); m++)
+            for  (unsigned int j =0; j < agents.size()/2; j++)
             {
+
                 int p;
                 p = (rand() % agents[m].archivex.size());
 
                 cout << " " << endl;
                 cout << "The current vector element selected: " << p << endl;
 
-                evalx = abs(archivex.at(i)- agents[m].archivex.at(j));
+                evalx = abs(archivex.at(j)- agents[m].archivex.at(p));
                 evalxtotal = evalxtotal + evalx;
-                cout << " " << endl;
-                cout << "Evalx = " << evalx << endl;
-                getch();
-
 
                 int q;
                 q = (rand() % agents[m].archivey.size());
@@ -104,15 +100,15 @@ void agent::evaluate()
                 cout << " " << endl;
                 cout << "The current vector element selected: " << q << endl;
 
-                evaly = abs(archivey.at(i) - agents[m].archivey.at(j));
+                evaly = abs(archivey.at(j) - agents[m].archivey.at(q));
                 evalytotal = evalytotal + evaly;
 
 
             }
 
         }
-            noveltyofx.push_back(evalxtotal);
-            noveltyofy.push_back(evalytotal);
+        noveltyofx.push_back(evalxtotal);
+        noveltyofy.push_back(evalytotal);
     }
 
     sumx = accumulate(noveltyofx.begin(), noveltyofx.end(), 0.0);
