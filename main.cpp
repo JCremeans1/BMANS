@@ -68,54 +68,54 @@ void agent::initialize()
     }
 }
 
-void agent::print()
-{
-
-
-
-}
-
 void agent::evaluate()
 {
 
-    for (int i = 0; i < points; i++)
+    // for (int i = 0; i < points; i++)
+    // {
+    for(unsigned int m = 0; m < agents.size(); m++)
     {
-        for(unsigned int m = 0; m < agents.size(); m++)
+        for  (unsigned int j =0; j < agents.size()/2; j++)
         {
-            for  (unsigned int j =0; j < agents.size()/2; j++)
-            {
 
-                int p;
-                p = (rand() % agents[m].archivex.size());
+            int p;
+            p = (rand() % agents[m].archivex.size());
 
-                cout << " " << endl;
-                cout << "The current vector element selected: " << p << endl;
+            cout << " " << endl;
+            cout << "The current vector element selected: " << p << endl;
 
-                evalx = abs(archivex.at(j)- agents[m].archivex.at(p));
-                evalxtotal = evalxtotal + evalx;
+            evalx = abs(archivex.at(j)- agents[m].archivex.at(p));
+            evalxtotal = evalxtotal + evalx;
 
-                int q;
-                q = (rand() % agents[m].archivey.size());
+            int q;
+            q = (rand() % agents[m].archivey.size());
 
-                cout << " " << endl;
-                cout << "The current vector element selected: " << q << endl;
+            cout << " " << endl;
+            cout << "The current vector element selected: " << q << endl;
 
-                evaly = abs(archivey.at(j) - agents[m].archivey.at(q));
-                evalytotal = evalytotal + evaly;
+            evaly = abs(archivey.at(j) - agents[m].archivey.at(q));
+            evalytotal = evalytotal + evaly;
 
-
-            }
 
         }
-        noveltyofx.push_back(evalxtotal);
-        noveltyofy.push_back(evalytotal);
+
     }
+    noveltyofx.push_back(evalxtotal);
+    noveltyofy.push_back(evalytotal);
+    //}
 
     sumx = accumulate(noveltyofx.begin(), noveltyofx.end(), 0.0);
     sumy = accumulate(noveltyofy.begin(), noveltyofy.end(), 0.0);
     novelty = sumx+sumy;
 
     noveltyvector.push_back(novelty);
+
+    for (unsigned int r  = 0; r < noveltyvector.size(); r++)
+    {
+    cout << " " << endl;
+    cout << "Novelty Vector Element: " << r << " is " << noveltyvector.at(r) << endl;
+    }
+
 
     cout << " " << endl;
     cout << "Novelty: "<< novelty << endl;
@@ -139,7 +139,6 @@ void agentcreation()
         evalytotal = 0;
 
         agents[i].evaluate();
-        agents[i].print();
 
         cout << " " << endl;
         cout << "End of Run: " << i << endl;
@@ -148,14 +147,19 @@ void agentcreation()
 
 }
 
+
+
 int main()
 {
+
+cout << "Program Initialization:" << endl;
+cout << " " << endl;
+
     srand(time(NULL));
-
-    cout << "Program Initialization:" << endl;
-    cout << " " << endl;
-
-    agentcreation();
+    for (int i = 0; i < 10; i++)
+    {
+        agentcreation();
+    }
 
     cout << " " << endl;
     cout << "Done"<< endl;
