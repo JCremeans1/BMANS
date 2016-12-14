@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1478756992 source:c:\users\jamie\desktop\bmans\main.cpp
+1480375325 source:c:\users\jamie\desktop\bmans\main.cpp
 	<cstdlib>
 	<iostream>
 	<string>
@@ -11,4 +11,5 @@
 	<algorithm>
 	<assert.h>
 	<conio.h>
+	<stdlib.h>
 
